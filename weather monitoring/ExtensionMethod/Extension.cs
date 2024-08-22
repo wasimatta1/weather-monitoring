@@ -13,8 +13,8 @@ namespace weather_monitoring.ExtensionMethod
             {
                 return JsonConvert.DeserializeObject<T>(input);
             }
-            catch 
-            { 
+            catch
+            {
                 return default(T);
             }
         }
@@ -35,6 +35,20 @@ namespace weather_monitoring.ExtensionMethod
                 return default(T);
             }
 
+        }
+        public static string ReadFile(this string path)
+        {
+            Type type = typeof(Program);
+            var assembly = type.Assembly;
+
+            var stream = assembly.GetManifestResourceStream(type, path);
+
+            if (stream == null)
+            {
+                throw new Exception("File not found");
+            }
+
+            return new StreamReader(stream).ReadToEnd();
         }
     }
 }

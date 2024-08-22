@@ -1,4 +1,5 @@
-﻿using weather_monitoring.Factory;
+﻿using weather_monitoring.ExtensionMethod;
+using weather_monitoring.Factory;
 
 namespace weather_monitoring
 {
@@ -8,16 +9,7 @@ namespace weather_monitoring
         {
             Console.WriteLine("The application reads data from a file");
 
-            Type type = typeof(Program);
-            var assembly = type.Assembly;
-
-            var stream = assembly.GetManifestResourceStream(type, "Data.Weather Data.txt");
-            if (stream is null)
-            {
-                Console.WriteLine("Resource not found.");
-                return;
-            }
-            string weatherData = new StreamReader(stream).ReadToEnd();
+            string weatherData = "Data.Weather Data.txt".ReadFile();
 
             WeatherDataParserFactory dataParserFactory = new WeatherDataParserFactory();
             var weatherDataObj = dataParserFactory.TryParse(weatherData);
