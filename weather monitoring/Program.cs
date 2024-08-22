@@ -6,20 +6,24 @@ namespace weather_monitoring
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("The application read datat from a file");
+            Console.WriteLine("The application reads data from a file");
 
-            string filePath = @"C:\Users\wasim\OneDrive\Desktop\C# project\weather monitoring\weather monitoring\Input .txt";
+            Type type = typeof(Program);
+            var assembly = type.Assembly;
 
-            string weatherData = File.ReadAllText(filePath);
+            var stream = assembly.GetManifestResourceStream(type, "Data.Weather Data.txt");
+            if (stream is null)
+            {
+                Console.WriteLine("Resource not found.");
+                return;
+            }
+            string weatherData = new StreamReader(stream).ReadToEnd();
 
             WeatherDataParserFactory dataParserFactory = new WeatherDataParserFactory();
-
-           var weatherDataObj = dataParserFactory.GetParser(weatherData);
+            var weatherDataObj = dataParserFactory.TryParse(weatherData);
 
             Console.WriteLine(weatherDataObj);
-
             Console.ReadLine();
-
         }
     }
 }

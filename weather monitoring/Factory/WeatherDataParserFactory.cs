@@ -1,5 +1,6 @@
 ﻿
 using System.Reflection;
+using weather_monitoring.Domin;
 using weather_monitoring.Interface;
 
 namespace weather_monitoring.Factory
@@ -19,7 +20,7 @@ namespace weather_monitoring.Factory
 
             List<Type> implementingIDataParser = Assembly.GetExecutingAssembly()
                 .GetTypes()
-                .Where(t => parserType.IsAssignableFrom(t) && !t.IsInterface )
+                .Where(t => parserType.IsAssignableFrom(t) && !t.IsInterface)
                 .ToList();
 
             return implementingIDataParser
@@ -28,14 +29,14 @@ namespace weather_monitoring.Factory
                 .ToList();
         }
 
-        public WeatherData? GetParser(string input)
+        public WeatherData? TryParse(string input)
         {
             foreach (var parser in parsers)
-            {   
+            {
                 var dataParsed = parser.TryParse(input);
 
                 if (!(dataParsed is null))
-                {   
+                {
                     return dataParsed;
                 }
             }

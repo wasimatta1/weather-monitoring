@@ -1,4 +1,4 @@
-﻿namespace weather_monitoring
+﻿namespace weather_monitoring.Domin
 {
     public class WeatherData
     {
@@ -8,7 +8,7 @@
 
         public override string ToString()
         {
-            return $"Location: {Location}, Temperature: {Temperature}, Humidity: {Humidity}";  
+            return $"Location: {Location}, Temperature: {Temperature}, Humidity: {Humidity}";
         }
     }
 }
