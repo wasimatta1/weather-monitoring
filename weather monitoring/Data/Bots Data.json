@@ -1,0 +1,17 @@
+{
+  "Rain": {
+    "enabled": true,
+    "humidityThreshold": 70,
+    "message": "It looks like it's about to pour down!"
+  },
+  "Sun": {
+    "enabled": true,
+    "temperatureThreshold": 30,
+    "message": "Wow, it's a scorcher out there!"
+  },
+  "Snow": {
+    "enabled": false,
+    "temperatureThreshold": 0,
+    "message": "Brrr, it's getting chilly!"
+  }
+}
