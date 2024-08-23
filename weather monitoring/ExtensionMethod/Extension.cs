@@ -11,7 +11,8 @@ namespace weather_monitoring.ExtensionMethod
         {
             try
             {
-                return JsonConvert.DeserializeObject<T>(input);
+                var obj = JsonConvert.DeserializeObject<T>(input);
+                return obj;
             }
             catch
             {
